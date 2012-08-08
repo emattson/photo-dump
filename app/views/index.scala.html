@@ -1,43 +1,28 @@
 @(message: String)
 
 @main("Photodump") {
-<div class="navbar navbar-fixed-top">
-    <div class="navbar-inner">
-        <div class="container-fluid">
-        <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </a>
-        <a class="brand" href="#">Photo Dump</a>
-        <div class="btn-group pull-right">
-          <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-            <i class="icon-user"></i> Username
-            <span class="caret"></span>
-          </a>
-          <ul class="dropdown-menu">
-            <li><a href="#">Profile</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Sign Out</a></li>
-          </ul>
-        </div>
-        <div class="nav-collapse">
-          <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
+
 
 
 
     <!-- main body -->
 <div class="container">
     <div class="row">
-        <div class="hero-unit">
-            <h1>@message</h1>
+        <div class="well">
+            <image src="@routes.Assets.at("images/trash.png")" height=100px width=100px class="pull-right">
+            <h1>Add Pictures</h1>
+            <div class="container">
+                @addPicForm()
+            </div>
+        </div>
+
+        <div class="well">
+            <h1>Carousel</h1>
+        </div>
+
+
+        <div class="well">
+            <h1>Albums</h1>
         </div>
     </div>
 </div>
