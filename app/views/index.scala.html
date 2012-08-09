@@ -1,6 +1,6 @@
-@(message: String)
+@(picForm: Form[Photo])
 
-@main("Photodump") {
+@main("main") {
 
 
 
@@ -12,7 +12,7 @@
             <image src="@routes.Assets.at("images/trash.png")" height=100px width=100px class="pull-right">
             <h1>Add Pictures</h1>
             <div class="container">
-                @addPicForm()
+                @addPicForm(picForm)
             </div>
         </div>
 

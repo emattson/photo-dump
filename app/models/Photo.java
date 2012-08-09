@@ -6,7 +6,7 @@ import play.db.ebean.Model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Lob;
+
 
 /**
  * Created on 8/8/12 @ 12:08 PM.
@@ -23,9 +23,13 @@ public class Photo extends Model{
 
     private String title;
     private String description;
+    private String picture;
 
-    @Lob
-    private byte[] picture;
+    public static Finder<Long, Photo> find = new Finder<>(Long.class, Photo.class);
+
+    public Photo(String picture) {
+        this.picture = picture;
+    }
 
     public String getTitle() {
         return title;
@@ -43,11 +47,11 @@ public class Photo extends Model{
         this.description = description;
     }
 
-    public byte[] getPicture() {
+    public String getPicture() {
         return picture;
     }
 
-    public void setPicture(byte[] picture) {
+    public void setPicture(String picture) {
         this.picture = picture;
     }
 }

@@ -1,1 +1,13 @@
-<p>Picture Form here!</p>
+@(picForm: Form[Photo])
+@import helper._
+
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
+
+@form(routes.Application.savePicture, 'enctype -> "multipart/form-data") {
+    <input type="file" multiple name="pictures" id="pictures">
+
+    <p>
+        <input type="submit">
+    </p>
+
+}

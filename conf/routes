@@ -6,7 +6,8 @@
 GET     /                           controllers.Application.index()
 
 # Forms
-GET     /addPics                    controllers.Application.addPictures()
+#GET     /addPics                    controllers.Application.addPictures()
+POST    /                           controllers.Application.savePicture()
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
