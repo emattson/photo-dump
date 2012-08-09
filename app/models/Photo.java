@@ -25,7 +25,7 @@ public class Photo extends Model{
     private String description;
     private String picture;
 
-    public static Finder<Long, Photo> find = new Finder<>(Long.class, Photo.class);
+    public static Finder<Long, Photo> find = new Finder<Long, Photo>(Long.class, Photo.class);
 
     public Photo(String picture) {
         this.picture = picture;
