@@ -7,7 +7,16 @@
 
     <!-- main body -->
 <div class="container">
-    <div class="row">
+    <div class="well">
+        <h1>Carousel</h1>
+        @carousel()
+        <button class="btn btn-primary" data-toggle="collapse" data-target="#picform">Add Pictures</button>
+        <button class="btn" data-toggle="collapse" data-target="#albums">Albums</button>
+    </div>
+
+    
+
+    <div id="picform" class="collapse">
         <div class="well">
             <image src="@routes.Assets.at("images/trash.png")" height=100px width=100px class="pull-right">
             <h1>Add Pictures</h1>
@@ -15,13 +24,9 @@
                 @addPicForm(picForm)
             </div>
         </div>
+    </div>
 
-        <div class="well">
-            <h1>Carousel</h1>
-            @carousel()
-        </div>
-
-
+    <div id="albums" class="collapse">
         <div class="well">
             <h1>Albums</h1>
         </div>
