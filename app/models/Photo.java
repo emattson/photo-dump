@@ -1,13 +1,14 @@
 package models;
 
 
-import play.db.ebean.Model;
 import play.Logger;
+import play.data.validation.Constraints;
+import play.db.ebean.Model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-
+import javax.persistence.ManyToOne;
 import java.util.List;
 
 
@@ -25,7 +26,12 @@ public class Photo extends Model{
 
     private String title;
     private String description;
+
+    @Constraints.Required
     private String picture;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    private Album album;
 
     public static Model.Finder<Long, Photo> find = new Finder<Long, Photo>(Long.class, Photo.class);
 

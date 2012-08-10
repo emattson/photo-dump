@@ -12,15 +12,9 @@ import java.util.List;
 
 public class Application extends Controller {
   
-  public static Result index() {
+    public static Result index() {
     return ok(index.render(form(Photo.class)));
-  }
-
-/*    public static Result addPictures(){
-        return ok(
-                addPicForm.render()
-        );
-    }*/
+    }
 
     public static Result savePicture(){
         Http.MultipartFormData body = request().body().asMultipartFormData();
@@ -32,7 +26,6 @@ public class Application extends Controller {
                 String myUploadPath = "public/images/uploaded/";
                 File file = picture.getFile();
                 if (file.renameTo(new File(myUploadPath, filename))){
-
                     Photo photo = new Photo("images/uploaded/" + filename);
                     photo.save();
                     Logger.debug(photo.getPicture());
