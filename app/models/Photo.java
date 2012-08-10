@@ -73,4 +73,12 @@ public class Photo extends Model{
     public void setPicture(String picture) {
         this.picture = picture;
     }
+
+    public Album getAlbum() {
+        return album;
+    }
+
+    public void setAlbum(Album album) {
+        this.album = album;
+    }
 }

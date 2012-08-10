@@ -5,6 +5,7 @@
 
 @form(routes.Application.savePicture, 'enctype -> "multipart/form-data") {
     <input type="file" multiple name="pictures" id="pictures">
+    @inputText(picForm("album"), '_label -> "Album to add to")
     <p>
         <input type="submit" class="btn-primary btn-large">
     </p>
