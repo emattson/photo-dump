@@ -33,7 +33,7 @@ public class Application extends Controller {
                 File file = picture.getFile();
                 if (file.renameTo(new File(myUploadPath, filename))){
 
-                    Photo photo = new Photo(myUploadPath + "/" + filename);
+                    Photo photo = new Photo("images/uploaded/" + filename);
                     photo.save();
                     Logger.debug(photo.getPicture());
                 }

@@ -2,10 +2,13 @@ package models;
 
 
 import play.db.ebean.Model;
+import play.Logger;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+
+import java.util.List;
 
 
 /**
@@ -18,14 +21,23 @@ import javax.persistence.Id;
 public class Photo extends Model{
 
     @Id
-    @GeneratedValue
-    Long id;
+    private Long id;
 
     private String title;
     private String description;
     private String picture;
 
-    public static Finder<Long, Photo> find = new Finder<Long, Photo>(Long.class, Photo.class);
+    public static Model.Finder<Long, Photo> find = new Finder<Long, Photo>(Long.class, Photo.class);
+
+    public static Photo getFirst(){
+        return find.all().get(0);
+    }
+
+    public static List<Photo> getRemaining(){
+        List<Photo> list = find.all();
+        list.remove(0);
+        return list;
+    }
 
     public Photo(String picture) {
         this.picture = picture;
@@ -48,6 +60,7 @@ public class Photo extends Model{
     }
 
     public String getPicture() {
+        Logger.debug(picture);
         return picture;
     }
 
