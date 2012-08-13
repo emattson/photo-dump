@@ -14,12 +14,18 @@ import java.util.List;
 
 public class Application extends Controller {
   
-    public static Result index() {
-    return ok(index.render(form(Photo.class)));
+    public static Result index(String album) {
+        return ok(
+                index.render(form(Photo.class), album)
+        );
     }
 
     public static Result savePicture(){
         Form form = form().bindFromRequest();
+        if (form.hasErrors()){
+            Logger.error("bad request");
+            return badRequest(index.render(form, "1"));
+        }
         String albumName = form.field("album").value();
         Album album;
         if(Album.find.where().eq("name", albumName).findList().size() == 0) {
@@ -44,10 +50,10 @@ public class Application extends Controller {
 
 
             }
-            return redirect(routes.Application.index());
+            return redirect(routes.Application.index(album.getName()));
         } else {
             flash("error", "Missing file");
-            return redirect(routes.Application.index());
+            return redirect(routes.Application.index("Default"));
         }
     }
 }

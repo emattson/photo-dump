@@ -1,5 +1,6 @@
 package models;
 
+import play.Logger;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
 
@@ -23,7 +24,7 @@ public class Album extends Model{
     private List<Photo> photos;
 
     //Finder
-    public static Finder<String, Album> find = new Finder<String, Album>(String.class, Album.class);
+    public static Model.Finder<String, Album> find = new Finder<String, Album>(String.class, Album.class);
 
     /**
      * constructor for making an album from a list of photos
@@ -41,6 +42,19 @@ public class Album extends Model{
      */
     public Album (String name){
         this.name = name;
+    }
+
+    public static String getAlbumNames(){
+        List<Object> names = find.findIds();
+        String result = "[";
+        for (Object name : names){
+            result = result + " \"" + name + "\",";
+        }
+        if (!names.isEmpty())
+            result = result.substring(0, result.length()-1);
+        result = result + "]";
+        Logger.debug(result);
+        return result;
     }
 
     public void setName(String name){
@@ -62,4 +76,7 @@ public class Album extends Model{
     }
 
 
+    public String getName() {
+        return name;
+    }
 }

@@ -81,4 +81,5 @@ public class Photo extends Model{
     public void setAlbum(Album album) {
         this.album = album;
     }
+
 }

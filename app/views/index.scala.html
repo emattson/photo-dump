@@ -1,9 +1,9 @@
-@(picForm: Form[Photo])
+@(picForm: Form[Photo], album: String)
 
 @main("main") {
 <div class="container-fluid">
     <div class="row-fluid">
-        @sidebar()
+        @sidebar(album)
 
 
         <div class="span10">
@@ -12,7 +12,7 @@
                 <div class="well">
                     <image src="@routes.Assets.at("images/trash.png")" height=100px width=100px class="pull-right">
                     <h1>Add Pictures</h1>
-                        @addPicForm(picForm)
+                        @addPicForm(picForm, album)
                 </div>
             </div>
             <div class="well">
