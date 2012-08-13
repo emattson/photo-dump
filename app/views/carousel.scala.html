@@ -4,11 +4,18 @@
   	@if(!models.Photo.find.all().isEmpty()){
   <div class="carousel-inner">
       	<div class="active item">
-    		<img src="@routes.Assets.at(models.Photo.find.all().get(0).getPicture())" alt>
-    	</div>
+    		<img src="@routes.Assets.at(Photo.getFirst().getPicture())" alt>
+            <div class="carousel-caption">
+                <h2>@Photo.getFirst().getId()</h2>
+            </div>
+    </div>
   		@for(picture <- models.Photo.getRemaining()){
   			<div class="item">
   				<img src="@routes.Assets.at(picture.getPicture())" alt>
+
+                  <div class="carousel-caption">
+                      <h2>@picture.getId()</h2>
+                  </div>
   			</div>
   		}
   	</div>

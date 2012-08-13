@@ -82,4 +82,7 @@ public class Photo extends Model{
         this.album = album;
     }
 
+    public Long getId() {
+        return id;
+    }
 }

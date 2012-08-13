@@ -5,12 +5,13 @@
 
 @form(routes.Application.savePicture, 'enctype -> "multipart/form-data") {
     @inputFile(field=picForm("pictures"), '_label -> "Select Pictures", '_id -> "pictures",'accept -> "jpg, JPG, png, PNG, jpeg, bmp, BMP, raw, tiff", 'multiple ->  "")
-    @inputText(picForm("album"), '_label -> "Album", 'value -> "default")
+    @inputText(picForm("album"), '_label -> "Album", 'value -> "String")
     <!--<input type="file" multiple name="pictures" id="pictures">
 
     <p>Album:</p>
     <input type="text" data-privide="typeahead" id="album" data-source="@Album.getAlbumNames()" value="Default">
-    --><p>
+    -->
+    <p>
         <input type="submit" class="btn-primary btn-large">
     </p>
 }
