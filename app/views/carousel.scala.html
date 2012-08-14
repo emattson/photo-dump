@@ -1,3 +1,4 @@
+@(n: Int)
 <div id="myCarousel" class="carousel slide">
   <!-- Carousel items -->
 
@@ -6,15 +7,15 @@
       	<div class="active item">
     		<img src="@routes.Assets.at(Photo.getFirst().getPicture())" alt>
             <div class="carousel-caption">
-                <h2>@Photo.getFirst().getId()</h2>
+                @photoForm(Photo.getFirst, 0)
             </div>
     </div>
-  		@for(picture <- models.Photo.getRemaining()){
+  		@for(i <- 0 until models.Photo.getRemaining().size()){
   			<div class="item">
-  				<img src="@routes.Assets.at(picture.getPicture())" alt>
+  				<img src="@routes.Assets.at(Photo.getRemaining().get(i).getPicture())" alt>
 
                   <div class="carousel-caption">
-                      <h2>@picture.getId()</h2>
+                      @photoForm(Photo.getRemaining().get(i), i)
                   </div>
   			</div>
   		}
@@ -24,3 +25,8 @@
   <a class="carousel-control left" href="#myCarousel" data-slide="prev">&lsaquo;</a>
   <a class="carousel-control right" href="#myCarousel" data-slide="next">&rsaquo;</a>
 </div>
+@if(n != 0){
+    <script>
+        $.carousel(n);
+    </script>
+}

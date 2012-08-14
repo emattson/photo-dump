@@ -75,8 +75,21 @@ public class Album extends Model{
         //TODO
     }
 
+    public List<Photo> getPhotos(){
+        return photos;
+    }
+
 
     public String getName() {
         return name;
+    }
+
+    public String toString(){
+        String out = "[ ";
+        for (Photo p : photos){
+            out = out + " " + p.getId() + " " + p.getTitle() + ",";
+        }
+        out = out + " ]";
+        return out;
     }
 }

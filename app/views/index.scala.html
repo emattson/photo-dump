@@ -1,4 +1,4 @@
-@(picForm: Form[Photo], album: String)
+@(picForm: Form[Photo], album: String, n: Int)
 
 @main("main") {
 <div class="container-fluid">
@@ -16,8 +16,7 @@
                 </div>
             </div>
             <div class="well">
-                <h1>Carousel</h1>
-                @carousel()
+                @carousel(n)
             </div>
         </div>
     </div>

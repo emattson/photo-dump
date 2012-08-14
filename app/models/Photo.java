@@ -35,6 +35,10 @@ public class Photo extends Model{
 
     public static Model.Finder<Long, Photo> find = new Finder<Long, Photo>(Long.class, Photo.class);
 
+    public Photo(String picture) {
+        this.picture = picture;
+    }
+
     public static Photo getFirst(){
         return find.all().get(0);
     }
@@ -45,9 +49,6 @@ public class Photo extends Model{
         return list;
     }
 
-    public Photo(String picture) {
-        this.picture = picture;
-    }
 
     public String getTitle() {
         return title;
