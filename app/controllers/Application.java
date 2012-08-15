@@ -50,8 +50,8 @@ public class Application extends Controller {
                     Photo photo = new Photo("images/uploaded/" + filename);
                     photo.setAlbum(album);
                     photo.save();
-                    album.addPhoto(photo);
-                    album.save();
+//                    album.addPhoto(photo);
+//                    album.save();
                     Logger.debug(photo.getPicture());
                     Logger.debug("   ~" + album.toString());
                 }
@@ -79,9 +79,16 @@ public class Application extends Controller {
     public static Result deletePhoto(Long id){
         Photo photo = Photo.find.ref(id);
         String album = photo.getAlbum().getName();
-        boolean deleted = new File(photo.getPicture()).delete();
-        Logger.debug(photo.getId() + " " +  deleted);
+        boolean deleted = new File("public/" + photo.getPicture()).delete();
+        if (deleted){
+//            Album.find.byId(album).deletePhoto(photo);
+            photo.setAlbum(null);
+            photo.delete();
+            return index(album, 0);
+        }
+        Logger.error("Didn't delete photo: " + photo.getPicture());
         return index(album, 0);
+
     }
 
     public static Form<Photo> getFilledPhotoForm(Photo photo){

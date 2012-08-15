@@ -1,6 +1,7 @@
 package models;
 
 
+import com.avaje.ebean.FetchConfig;
 import play.Logger;
 import play.data.validation.Constraints;
 import play.db.ebean.Model;
@@ -39,12 +40,21 @@ public class Photo extends Model{
         this.picture = picture;
     }
 
-    public static Photo getFirst(){
-        return find.all().get(0);
+    public static boolean albumEmpty(String album){
+        return find
+                .fetch("album", "name", new FetchConfig().query())
+                .where()
+                .eq("album.name", album)
+                .findList()
+                .isEmpty();
     }
 
-    public static List<Photo> getRemaining(){
-        List<Photo> list = find.all();
+    public static Photo getFirst(String album){
+        return find.fetch("album", "name", new FetchConfig().query()).where().eq("album.name", album).findList().get(0);
+    }
+
+    public static List<Photo> getRemaining(String album){
+        List<Photo> list = find.fetch("album", "name", new FetchConfig().query()).where().eq("album.name", album).findList();
         list.remove(0);
         return list;
     }
