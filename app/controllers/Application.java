@@ -50,10 +50,6 @@ public class Application extends Controller {
                     Photo photo = new Photo("images/uploaded/" + filename);
                     photo.setAlbum(album);
                     photo.save();
-//                    album.addPhoto(photo);
-//                    album.save();
-                    Logger.debug(photo.getPicture());
-                    Logger.debug("   ~" + album.toString());
                 }
 
 
@@ -72,7 +68,6 @@ public class Application extends Controller {
         photo.setDescription(form.field("description").value());
         photo.save();
         //updated photo
-
         return index(photo.getAlbum().getName(), 0);
     }
 
@@ -81,8 +76,7 @@ public class Application extends Controller {
         String album = photo.getAlbum().getName();
         boolean deleted = new File("public/" + photo.getPicture()).delete();
         if (deleted){
-//            Album.find.byId(album).deletePhoto(photo);
-            photo.setAlbum(null);
+            photo.setAlbum(null); //necessary to avoid foreign key constraints
             photo.delete();
             return index(album, 0);
         }
