@@ -3,11 +3,13 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index()
+GET     /                           controllers.Application.index(a ?= "Default", n:Int ?= 0)
 
 # Forms
 #GET     /addPics                    controllers.Application.addPictures()
-POST    /                           controllers.Application.savePicture()
+POST    /save                           controllers.Application.savePicture()
+POST    /edit                           controllers.Application.editPhoto(id: Long)
+POST    /delete                     controllers.Application.deletePhoto(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)

@@ -1,0 +1,26 @@
+@(photo: Photo, i: Int)
+@import helper._
+@implicitFieldConstructor = @{ FieldConstructor(twitterBootstrapInput.render) }
+@implicitForm = @{ Application.getFilledPhotoForm(photo) }
+
+<h2>@photo.getTitle()</h2>
+<p>@photo.getDescription</p>
+
+<button class="btn btn-small pull-right" data-toggle="collapse" data-target="#edit@photo.getId">Edit Picture Info <i class="icon-arrow-down"></i></button>
+
+<div id="edit@photo.getId()" class="collapse">
+    @form(routes.Application.editPhoto(photo.getId())){
+        <h2>Edit Picture Information</h2>
+        <fieldset style="color: #f5f5f5;">
+            @inputText(implicitForm("title"), '_label -> "Picture Title")
+            @textarea(implicitForm("description"), '_label -> "Picture Description", 'class -> "span6", 'cols -> 3)
+            <input hidden="true" name="i" value=@i>
+            <p></p>
+        </fieldset>
+        <input type="submit" value="editPhoto" class="btn-primary btn-large">
+    }
+
+    @form(routes.Application.deletePhoto(photo.getId())) {
+    		<input type="submit" value="Delete Picture" class="btn btn-danger">
+    }
+</div>

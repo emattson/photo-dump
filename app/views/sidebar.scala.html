@@ -1,3 +1,5 @@
+@(selected: String)
+
 <div class="span2">
     <!-- SIDEBAR -->
     <div class="well sidebar-nav">
@@ -6,9 +8,9 @@
                 Albums
             </li>
             <li class="divider"></li>
-            <li class="active">
-                <a href="#">Default</a>
-            </li>
+            @for(album <- models.Album.find.all()){
+                <li @if(selected.equals(album.getName())){class="active"}><a href="@routes.Application.index(album.getName())">@album.getName()</a></li>
+            }
         </ul>
     </div>
 </div> <!-- end of sidebar -->

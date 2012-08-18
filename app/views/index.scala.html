@@ -1,23 +1,22 @@
-@(picForm: Form[Photo])
+@(picForm: Form[Photo], album: String, n: Int)
 
 @main("main") {
 <div class="container-fluid">
     <div class="row-fluid">
-        @sidebar()
+        @sidebar(album)
 
 
         <div class="span10">
             <!-- main body -->
             <div id="picform">
                 <div class="well">
-                    <image src="@routes.Assets.at("images/trash.png")" height=100px width=100px class="pull-right">
+                    <image src="@routes.Assets.at("images/trash.png")" height=130px width=130px class="pull-right">
                     <h1>Add Pictures</h1>
                         @addPicForm(picForm)
                 </div>
             </div>
             <div class="well">
-                <h1>Carousel</h1>
-                @carousel()
+                @carousel(n, album)
             </div>
         </div>
     </div>
